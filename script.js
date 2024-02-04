@@ -38,3 +38,20 @@ console.log(Person.prototype.isPrototypeOf(Person));
 Person.prototype.species = 'Human';
 console.log(alex.species);
 console.log(alex.__proto__.species); // same field
+
+//Prototype chain
+console.log(alex.__proto__); // Person.prototype
+console.log(alex.__proto__.__proto__); // Object.prototype
+console.log(alex.__proto__.__proto__.__proto__); // null
+
+// prototype of an array
+const arr = [1, 2, 3, 4, 5, 6, 1, 2, 3];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+console.log(arr.__proto__.__proto__);
+
+// adding new method to Array prototype property
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
