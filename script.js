@@ -55,3 +55,64 @@ Array.prototype.unique = function () {
   return [...new Set(this)];
 };
 console.log(arr.unique());
+
+// ES6 classes
+class PersonClass {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  calcAge() {
+    return `Age is ${2024 - this.birthYear}`;
+  }
+
+  get age() {
+    return 2024 - this.birthYear;
+  }
+}
+
+const jessica = new PersonClass('Jessica', 1999);
+console.log(jessica);
+console.log(jessica.calcAge());
+console.log(jessica.__proto__);
+console.log(`Jessica's age is ${jessica.age}`);
+
+// getters and setters
+const account = {
+  owner: 'Jonas',
+  movements: [200, 300, 400],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+account.latest = 1000;
+console.log(account.movements);
+
+//
+class Human {
+  constructor(fullName, age) {
+    this.fullName = fullName;
+    this.age = age;
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+}
+
+const greg = new Human('Greg Smit', 1998);
+console.log(greg);
+console.log(greg.fullName);
