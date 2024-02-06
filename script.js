@@ -164,3 +164,5 @@ console.log(steven.__proto__);
 const sarah = Object.create(HumanProto);
 sarah.init('Sarah', 1991);
 console.log(sarah);
+
+// real inheritance
