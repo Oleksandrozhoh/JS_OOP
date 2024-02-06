@@ -33,3 +33,62 @@ const jake = new Student('Jake', 1992, 'Computer science');
 jake.check();
 console.log(jake);
 jake.calcAge();
+
+/// another example
+
+class Account {
+  // public fields:
+  // _movements = [];
+  locale = navigator.language;
+
+  //Private fields:
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin, movements) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    // this._movements = []; // convention to mark protected fields
+    // this.locale = navigator.language;
+  }
+
+  deposit(val) {
+    this.#movements.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  #approveLoan(val) {
+    // private method
+    // method meant to be used internaly only
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val);
+      console.log('Loan have been approved');
+    }
+  }
+
+  getMovements() {
+    return this.#movements;
+  }
+
+  getPin() {
+    return this.#pin;
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111, []);
+console.log(acc1);
+acc1.deposit(500);
+acc1.withdraw(200);
+// console.log(acc1._movements); - its wrong to access _ properties directly
+console.log(acc1.getMovements());
+console.log(acc1.getPin());
+acc1.requestLoan(500);
+// console.log(acc1.#movements); - is NOT accessible outside of the class
