@@ -116,3 +116,51 @@ class Human {
 const greg = new Human('Greg Smit', 1998);
 console.log(greg);
 console.log(greg.fullName);
+
+///////////////////////////////////
+// static methods
+const myArray = Array.from(new Set([1, 2, 3, 4]));
+console.log(myArray);
+
+// creating static method
+Human.hey = function () {
+  console.log('Hi!');
+};
+
+Human.hey();
+
+class Human2 {
+  constructor(fullName, age) {
+    this.fullName = fullName;
+    this.age = age;
+  }
+
+  static hey() {
+    console.log('Hi there!✌');
+  }
+}
+
+Human2.hey();
+
+const HumanProto = {
+  calcAge() {
+    return `Age is ${2024 - this.birthYear}`;
+  },
+
+  init(name, birthYear) {
+    this.name = name;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(HumanProto);
+console.log(steven);
+steven.fullName = 'Steven Makirk';
+steven.birthYear = 1992;
+console.log(steven);
+steven.calcAge();
+console.log(steven.__proto__);
+
+const sarah = Object.create(HumanProto);
+sarah.init('Sarah', 1991);
+console.log(sarah);
