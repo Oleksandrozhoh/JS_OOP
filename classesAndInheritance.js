@@ -55,10 +55,12 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   #approveLoan(val) {
@@ -72,6 +74,7 @@ class Account {
       this.deposit(val);
       console.log('Loan have been approved');
     }
+    return this;
   }
 
   getMovements() {
@@ -92,3 +95,5 @@ console.log(acc1.getMovements());
 console.log(acc1.getPin());
 acc1.requestLoan(500);
 // console.log(acc1.#movements); - is NOT accessible outside of the class
+
+acc1.deposit(200).deposit(400).withdraw(500).requestLoan(400);
